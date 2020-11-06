@@ -3,12 +3,12 @@ public class WinChecker {
     private static Color[][] playingField;
     private static int x;
     private static int y;
-    private final static int WIN_COUNT = 4;
 
     public static boolean checkWin(Color[][] playingField, int x, int y){
 
         WinChecker.x = x;
         WinChecker.y = y;
+        WinChecker.playingField = playingField;
 
         return checkWinVertical() || checkWinHorizontal() || checkWinDiagonal1() || checkWinDiagonal2();
     }
@@ -19,17 +19,17 @@ public class WinChecker {
         Color countColor = null;
         int count = 0;
 
-        for (int i = 0; i < slot.length; i++){
+        for (int i = slot.length - 1; i >= 0; i--){
 
             if (slot[i] == null){
                 break;
             }
 
-            if(i == 0){
+            if(i == slot.length - 1){
                 count++;
                 countColor = slot[i];
             }else {
-                if (slot[i -1] == countColor){
+                if (slot[i] == countColor){
                     count++;
                 }else{
                     count = 1;
@@ -47,7 +47,31 @@ public class WinChecker {
 
     private static boolean checkWinHorizontal(){
 
+        int count = 0;
+        Color countColor = null;
 
+        for (int i = 0; i < playingField.length; i++){
+            if (playingField[i][y] != null){
+                if (count == 0){
+                    countColor = playingField[i][y];
+                    count++;
+                }else {
+                    if (playingField[i][y] == countColor){
+                        count++;
+                    }else {
+                        count = 1;
+                        countColor = playingField[i][y];
+                    }
+                }
+            }else {
+                countColor = null;
+                count = 0;
+            }
+
+            if (count == Game.WIN_NUMBER){
+                return true;
+            }
+        }
         return false;
     }
 

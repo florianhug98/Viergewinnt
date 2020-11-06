@@ -1,6 +1,11 @@
 public class Game {
 
-    private Color[][] playingField = new Color[6][7];
+    public static final int PLAYINGFIELD_X = 7;
+    public static final int PLAYINGFIELD_Y = 6;
+    public static final int WIN_NUMBER = 4;
+
+    private Color[][] playingfield = new Color[PLAYINGFIELD_X][PLAYINGFIELD_Y];
+
     private Player player1;
     private Player player2;
     private Player currentPlayer;
@@ -11,18 +16,26 @@ public class Game {
         this.currentPlayer = startingPlayer;
     }
 
-    public boolean setStone(int slotNumber){
+    public boolean putCoin(int slotNumber){
 
-        Color[] slot = this.playingField[slotNumber];
+        if (slotNumber >= 0 && slotNumber < this.playingfield.length) {
 
-        for (int i = 0; i < slot.length; i++){
+            Color[] slot = this.playingfield[slotNumber];
 
+            for (int i = slot.length - 1; i >= 0; i--) {
+                if (slot[i] == null) {
+                    slot[i] = currentPlayer.getColor();
+                    switchPlayer();
+                    return WinChecker.checkWin(this.playingfield, slotNumber, i);
+                }
+
+                if (slot[0] != null){
+                    throw new IllegalArgumentException("Slot ist voll");
+                }
+            }
         }
-
-        return false;
+        throw new IllegalArgumentException("Diesen Slot gibt es nicht!");
     }
-
-
 
     private void switchPlayer(){
         if (this.currentPlayer == this.player1){
@@ -32,4 +45,12 @@ public class Game {
         }
     }
 
+    //Getter + Setter
+    public Color[][] getPlayingfield(){
+        return this.playingfield;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 }
