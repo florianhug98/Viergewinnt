@@ -1,3 +1,7 @@
+package util;
+
+import util.Color;
+
 public class Player {
 
     private Color color;

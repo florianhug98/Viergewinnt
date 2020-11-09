@@ -1,6 +1,9 @@
+import game.Game;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import util.Color;
+import util.Player;
 
 public class GameTest {
 

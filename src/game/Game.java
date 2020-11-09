@@ -1,3 +1,9 @@
+package game;
+
+import util.Color;
+import util.Player;
+import util.WinChecker;
+
 public class Game {
 
     public static final int PLAYINGFIELD_X = 7;

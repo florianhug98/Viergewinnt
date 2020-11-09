@@ -1,3 +1,7 @@
+package util;
+
+import game.Game;
+
 public class WinChecker {
 
     private static Color[][] playingField;

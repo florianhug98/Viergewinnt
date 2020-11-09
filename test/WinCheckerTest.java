@@ -1,7 +1,9 @@
+import game.Game;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert.*;
+import util.Color;
+import util.WinChecker;
 
 public class WinCheckerTest {
 
