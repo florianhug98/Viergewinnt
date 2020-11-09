@@ -19,7 +19,7 @@ public class WinChecker {
         Color countColor = null;
         int count = 0;
 
-        for (int i = slot.length - 1; i >= 0; i--){
+        for (int i = Game.PLAYINGFIELD_Y - 1; i >= 0; i--){
 
             if (slot[i] == null){
                 break;
@@ -50,17 +50,17 @@ public class WinChecker {
         int count = 0;
         Color countColor = null;
 
-        for (int i = 0; i < playingField.length; i++){
-            if (playingField[i][y] != null){
+        for (int col = 0; col < Game.PLAYINGFIELD_X; col++){
+            if (playingField[col][y] != null){
                 if (count == 0){
-                    countColor = playingField[i][y];
+                    countColor = playingField[col][y];
                     count++;
                 }else {
-                    if (playingField[i][y] == countColor){
+                    if (playingField[col][y] == countColor){
                         count++;
                     }else {
                         count = 1;
-                        countColor = playingField[i][y];
+                        countColor = playingField[col][y];
                     }
                 }
             }else {
@@ -77,11 +77,143 @@ public class WinChecker {
 
     private static boolean checkWinDiagonal1(){
 
+        return checkWinDiagonal1_1() || checkWinDiagonal1_2();
+    }
+
+    private static boolean checkWinDiagonal1_1(){
+
+        int count = 0;
+        Color countColor = null;
+
+        for (int colStart = 0; colStart < Game.PLAYINGFIELD_X; colStart++){
+            int col, row;
+            for (row = Game.PLAYINGFIELD_Y - 1, col = colStart; row >= 0 && col < Game.PLAYINGFIELD_X; row--, col++){
+                if (playingField[col][row] == null){
+                    countColor = null;
+                    count = 0;
+                    continue;
+                }else {
+                    if (count == 0){
+                        countColor = playingField[col][row];
+                        count = 1;
+                    }else {
+                        if (countColor == playingField[col][row]){
+                            count++;
+                        }else {
+                            countColor = playingField[col][row];
+                            count = 1;
+                        }
+                    }
+                }
+                if (count == Game.WIN_NUMBER){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static boolean checkWinDiagonal1_2(){
+
+        int count = 0;
+        Color countColor = null;
+
+        for (int rowStart = Game.PLAYINGFIELD_Y - 1; rowStart > 0; rowStart--){
+            int row,col;
+            for (row = rowStart, col = 0; row >= 0 && col < Game.PLAYINGFIELD_X; row--, col++){
+                if (playingField[col][row] == null){
+                    countColor = null;
+                    count = 0;
+                    continue;
+                }else {
+                    if (count == 0){
+                        countColor = playingField[col][row];
+                        count++;
+                    }else {
+                        if (countColor == playingField[col][row]){
+                            count++;
+                        }else {
+                            countColor = playingField[col][row];
+                            count = 1;
+                        }
+                    }
+                }
+                if (count == Game.WIN_NUMBER){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
     private static boolean checkWinDiagonal2(){
 
+        return checkWinDiagonal2_1() || checkWinDiagonal2_2();
+    }
+
+    private static boolean checkWinDiagonal2_1(){
+
+        int count = 0;
+        Color countColor = null;
+
+        for (int colStart = 1; colStart < Game.PLAYINGFIELD_X; colStart++){
+            int row, col;
+            for (row = 0, col = colStart; row < Game.PLAYINGFIELD_Y && col < Game.PLAYINGFIELD_X; col++, row++){
+                if (playingField[col][row] == null){
+                    countColor = null;
+                    count = 0;
+                    continue;
+                }else {
+                    if (count == 0){
+                        countColor = playingField[col][row];
+                        count++;
+                    }else{
+                        if (countColor == playingField[col][row]){
+                            count++;
+                        }else {
+                            countColor = playingField[col][row];
+                            count = 1;
+                        }
+                    }
+                }
+                if (count == Game.WIN_NUMBER){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static boolean checkWinDiagonal2_2(){
+
+        int count = 0;
+        Color countColor = null;
+
+        for (int rowStart = 0; rowStart < Game.PLAYINGFIELD_Y - Game.WIN_NUMBER; rowStart++){
+            int row, col;
+            for (row = rowStart, col = 0; row < Game.PLAYINGFIELD_Y && col < Game.PLAYINGFIELD_X; row++, col++){
+                if (playingField[col][row] == null){
+                    countColor = null;
+                    count = 0;
+                    continue;
+                }else{
+                    if (count == 0){
+                        countColor = playingField[col][row];
+                        count++;
+                    }else {
+                        if (countColor == playingField[col][row]){
+                            count++;
+                        }else {
+                            countColor = playingField[col][row];
+                            count = 1;
+                        }
+                    }
+                }
+                if (count == Game.WIN_NUMBER){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

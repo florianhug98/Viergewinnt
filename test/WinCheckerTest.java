@@ -22,7 +22,7 @@ public class WinCheckerTest {
         this.playingfield[0][1] = Color.RED;
         this.playingfield[0][0] = Color.RED;
 
-        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 0, 1));
+        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 0, 0));
 
         System.out.println("vert win 1");
         printPlayingfield();
@@ -49,7 +49,7 @@ public class WinCheckerTest {
         this.playingfield[3][3] = Color.YELLOW;
         this.playingfield[3][2] = Color.RED;
 
-        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 0, 2));
+        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3,2));
 
         System.out.println("vert 1");
         printPlayingfield();
@@ -64,7 +64,7 @@ public class WinCheckerTest {
         this.playingfield[0][2] = Color.RED;
         this.playingfield[0][1] = Color.RED;
 
-        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 0, 1));
+        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 0,1));
 
         System.out.println("vert 2");
         printPlayingfield();
@@ -74,14 +74,14 @@ public class WinCheckerTest {
     public void testCheckHorizontalNoWin1(){
         this.playingfield[0][5] = Color.RED;
 
-        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 0, 5));
+        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 0,5));
 
         this.playingfield[0][5] = Color.RED;
         this.playingfield[1][5] = Color.RED;
         this.playingfield[2][5] = Color.YELLOW;
         this.playingfield[3][5] = Color.RED;
 
-        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3, 5));
+        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3,5));
 
 
         System.out.println("hor 1");
@@ -96,7 +96,7 @@ public class WinCheckerTest {
         this.playingfield[2][5] = Color.RED;
         this.playingfield[3][5] = Color.YELLOW;
 
-        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3, 5));
+        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3,5));
 
         System.out.println("hor 2");
         printPlayingfield();
@@ -109,10 +109,10 @@ public class WinCheckerTest {
         this.playingfield[5][5] = Color.RED;
         this.playingfield[6][5] = Color.RED;
 
-        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 6, 5));
-
         System.out.println("hor win 1");
         printPlayingfield();
+
+        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 6,5));
     }
 
     @Test
@@ -123,14 +123,14 @@ public class WinCheckerTest {
         this.playingfield[2][5] = Color.YELLOW;
         this.playingfield[3][5] = Color.YELLOW;
 
-        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 3, 5));
-
         System.out.println("hor win 2");
         printPlayingfield();
+
+        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 3,5));
     }
 
     @Test
-    public void testCheckDiagonal1NoWin(){
+    public void testCheckDiagonal1NoWin1(){
         this.playingfield[0][5] = Color.RED;
 
         this.playingfield[1][5] = Color.YELLOW;
@@ -140,23 +140,165 @@ public class WinCheckerTest {
         this.playingfield[2][4] = Color.RED;
         this.playingfield[2][3] = Color.RED;
 
-        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 2, 3));
-
+        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 2,3));
 
         System.out.println("dia1 no win 1");
         printPlayingfield();
     }
 
+    @Test
+    public void testCheckDiagonal1NoWin2(){
+        this.playingfield[0][5] = Color.RED;
+
+        this.playingfield[1][5] = Color.YELLOW;
+        this.playingfield[1][4] = Color.RED;
+
+        this.playingfield[2][5] = Color.YELLOW;
+        this.playingfield[2][4] = Color.RED;
+        this.playingfield[2][3] = Color.RED;
+
+        this.playingfield[3][5] = Color.RED;
+        this.playingfield[3][4] = Color.YELLOW;
+        this.playingfield[3][3] = Color.RED;
+        this.playingfield[3][2] = Color.YELLOW;
+
+        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3,2));
+
+        System.out.println("dia1 no win 2");
+        printPlayingfield();
+    }
+
+    @Test
+    public void testCheckDiagonal1Win1(){
+        this.playingfield[0][5] = Color.RED;
+
+        this.playingfield[1][5] = Color.YELLOW;
+        this.playingfield[1][4] = Color.RED;
+
+        this.playingfield[2][5] = Color.YELLOW;
+        this.playingfield[2][4] = Color.RED;
+        this.playingfield[2][3] = Color.RED;
+
+        this.playingfield[3][5] = Color.RED;
+        this.playingfield[3][4] = Color.YELLOW;
+        this.playingfield[3][3] = Color.RED;
+        this.playingfield[3][2] = Color.RED;
+
+        System.out.println("dia1 win 1");
+        printPlayingfield();
+
+        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 3,2));
+    }
+
+    @Test
+    public void testCheckDiagonal1Win2(){
+        this.playingfield[3][5] = Color.RED;
+        this.playingfield[3][4] = Color.YELLOW;
+        this.playingfield[3][3] = Color.RED;
+
+        this.playingfield[4][5] = Color.YELLOW;
+        this.playingfield[4][4] = Color.RED;
+        this.playingfield[4][3] = Color.RED;
+        this.playingfield[4][2] = Color.RED;
+
+        this.playingfield[5][5] = Color.YELLOW;
+        this.playingfield[5][4] = Color.RED;
+        this.playingfield[5][3] = Color.YELLOW;
+        this.playingfield[5][2] = Color.RED;
+        this.playingfield[5][1] = Color.RED;
+
+        this.playingfield[6][5] = Color.RED;
+        this.playingfield[6][4] = Color.YELLOW;
+        this.playingfield[6][3] = Color.RED;
+        this.playingfield[6][2] = Color.YELLOW;
+        this.playingfield[6][1] = Color.YELLOW;
+        this.playingfield[6][0] = Color.RED;
+
+        System.out.println("dia1 no win 2");
+        printPlayingfield();
+
+        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 6,0));
+    }
+
+    @Test
+    public void testCheckDiagonal2NoWin1(){
+        this.playingfield[0][5] = Color.RED;
+        this.playingfield[0][4] = Color.YELLOW;
+        this.playingfield[0][3] = Color.RED;
+        this.playingfield[0][2] = Color.YELLOW;
+        this.playingfield[0][1] = Color.RED;
+        this.playingfield[0][0] = Color.YELLOW;
+
+        this.playingfield[1][5] = Color.RED;
+        this.playingfield[1][4] = Color.YELLOW;
+        this.playingfield[1][3] = Color.RED;
+        this.playingfield[1][2] = Color.YELLOW;
+        this.playingfield[1][1] = Color.RED;
+
+        this.playingfield[2][5] = Color.RED;
+        this.playingfield[2][4] = Color.RED;
+        this.playingfield[2][3] = Color.YELLOW;
+        this.playingfield[2][2] = Color.RED;
+
+        this.playingfield[3][5] = Color.YELLOW;
+        this.playingfield[3][4] = Color.YELLOW;
+        this.playingfield[3][3] = Color.RED;
+
+        System.out.println("dia2 no win 1");
+        printPlayingfield();
+
+        Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3,3));
+    }
+
+    @Test
+    public void testCheckDiagonal2NoWin2(){
+        this.playingfield[0][5] = Color.RED;
+        this.playingfield[0][4] = Color.YELLOW;
+        this.playingfield[0][3] = Color.RED;
+        this.playingfield[0][2] = Color.YELLOW;
+        this.playingfield[0][1] = Color.RED;
+        this.playingfield[0][0] = Color.RED;
+
+        this.playingfield[1][5] = Color.RED;
+        this.playingfield[1][4] = Color.YELLOW;
+        this.playingfield[1][3] = Color.RED;
+        this.playingfield[1][2] = Color.YELLOW;
+        this.playingfield[1][1] = Color.RED;
+
+        this.playingfield[2][5] = Color.RED;
+        this.playingfield[2][4] = Color.RED;
+        this.playingfield[2][3] = Color.YELLOW;
+        this.playingfield[2][2] = Color.RED;
+
+        this.playingfield[3][5] = Color.YELLOW;
+        this.playingfield[3][4] = Color.YELLOW;
+        this.playingfield[3][3] = Color.RED;
+
+        System.out.println("dia2 no win 1");
+        printPlayingfield();
+
+        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 3,3));
+    }
 
 
+    @Test
+    public void test(){
 
+        this.playingfield[0][0] = Color.RED;
+        this.playingfield[1][1] = Color.RED;
+        this.playingfield[2][2] = Color.RED;
+        this.playingfield[3][3] = Color.RED;
+        this.playingfield[4][4] = Color.RED;
 
+        printPlayingfield();
+    }
 
 
 
     private void printPlayingfield(){
-        StringBuilder text = new StringBuilder("|0||1||2||3||4||5||6|\r\n");
+        StringBuilder text = new StringBuilder("| ||0||1||2||3||4||5||6|\r\n");
         for (int i = 0; i < Game.PLAYINGFIELD_Y; i++ ){
+            text.append("|").append(i).append("|");
             for (int j = 0; j< Game.PLAYINGFIELD_X; j++){
                 text.append("|");
                 if (this.playingfield[j][i] == Color.RED){
