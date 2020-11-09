@@ -16,15 +16,15 @@ public class Player {
         return color;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public String getSign(){
+        if (this.color == Color.RED){
+            return "X";
+        }
+        return "O";
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }

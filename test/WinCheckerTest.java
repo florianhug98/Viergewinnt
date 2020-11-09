@@ -27,7 +27,7 @@ public class WinCheckerTest {
         Assert.assertTrue(WinChecker.checkWin(this.playingfield, 0, 0));
 
         System.out.println("vert win 1");
-        printPlayingfield();
+        printplayingfield();
     }
 
     @Test
@@ -40,7 +40,7 @@ public class WinCheckerTest {
         Assert.assertTrue(WinChecker.checkWin(this.playingfield, 0, 2));
 
         System.out.println("vert win 2");
-        printPlayingfield();
+        printplayingfield();
     }
 
     @Test
@@ -54,7 +54,7 @@ public class WinCheckerTest {
         Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3,2));
 
         System.out.println("vert 1");
-        printPlayingfield();
+        printplayingfield();
     }
 
     @Test
@@ -69,7 +69,7 @@ public class WinCheckerTest {
         Assert.assertFalse(WinChecker.checkWin(this.playingfield, 0,1));
 
         System.out.println("vert 2");
-        printPlayingfield();
+        printplayingfield();
     }
 
     @Test
@@ -87,7 +87,7 @@ public class WinCheckerTest {
 
 
         System.out.println("hor 1");
-        printPlayingfield();
+        printplayingfield();
     }
 
     @Test
@@ -101,7 +101,7 @@ public class WinCheckerTest {
         Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3,5));
 
         System.out.println("hor 2");
-        printPlayingfield();
+        printplayingfield();
     }
 
     @Test
@@ -112,7 +112,7 @@ public class WinCheckerTest {
         this.playingfield[6][5] = Color.RED;
 
         System.out.println("hor win 1");
-        printPlayingfield();
+        printplayingfield();
 
         Assert.assertTrue(WinChecker.checkWin(this.playingfield, 6,5));
     }
@@ -126,7 +126,7 @@ public class WinCheckerTest {
         this.playingfield[3][5] = Color.YELLOW;
 
         System.out.println("hor win 2");
-        printPlayingfield();
+        printplayingfield();
 
         Assert.assertTrue(WinChecker.checkWin(this.playingfield, 3,5));
     }
@@ -145,7 +145,7 @@ public class WinCheckerTest {
         Assert.assertFalse(WinChecker.checkWin(this.playingfield, 2,3));
 
         System.out.println("dia1 no win 1");
-        printPlayingfield();
+        printplayingfield();
     }
 
     @Test
@@ -167,7 +167,7 @@ public class WinCheckerTest {
         Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3,2));
 
         System.out.println("dia1 no win 2");
-        printPlayingfield();
+        printplayingfield();
     }
 
     @Test
@@ -187,7 +187,7 @@ public class WinCheckerTest {
         this.playingfield[3][2] = Color.RED;
 
         System.out.println("dia1 win 1");
-        printPlayingfield();
+        printplayingfield();
 
         Assert.assertTrue(WinChecker.checkWin(this.playingfield, 3,2));
     }
@@ -217,7 +217,7 @@ public class WinCheckerTest {
         this.playingfield[6][0] = Color.RED;
 
         System.out.println("dia1 no win 2");
-        printPlayingfield();
+        printplayingfield();
 
         Assert.assertTrue(WinChecker.checkWin(this.playingfield, 6,0));
     }
@@ -247,7 +247,7 @@ public class WinCheckerTest {
         this.playingfield[3][3] = Color.RED;
 
         System.out.println("dia2 no win 1");
-        printPlayingfield();
+        printplayingfield();
 
         Assert.assertFalse(WinChecker.checkWin(this.playingfield, 3,3));
     }
@@ -277,7 +277,7 @@ public class WinCheckerTest {
         this.playingfield[3][3] = Color.RED;
 
         System.out.println("dia2 no win 1");
-        printPlayingfield();
+        printplayingfield();
 
         Assert.assertTrue(WinChecker.checkWin(this.playingfield, 3,3));
     }
@@ -292,12 +292,12 @@ public class WinCheckerTest {
         this.playingfield[3][3] = Color.RED;
         this.playingfield[4][4] = Color.RED;
 
-        printPlayingfield();
+        printplayingfield();
     }
 
 
 
-    private void printPlayingfield(){
+    private void printplayingfield(){
         StringBuilder text = new StringBuilder("| ||0||1||2||3||4||5||6|\r\n");
         for (int i = 0; i < Game.PLAYINGFIELD_Y; i++ ){
             text.append("|").append(i).append("|");

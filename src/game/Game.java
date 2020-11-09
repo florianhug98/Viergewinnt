@@ -10,16 +10,21 @@ public class Game {
     public static final int PLAYINGFIELD_Y = 6;
     public static final int WIN_NUMBER = 4;
 
-    private Color[][] playingfield = new Color[PLAYINGFIELD_X][PLAYINGFIELD_Y];
+    private final Color[][] playingfield = new Color[PLAYINGFIELD_X][PLAYINGFIELD_Y];
 
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
     private Player currentPlayer;
 
-    public Game (Player startingPlayer, Player player1, Player player2){
+    public Game (Player player1, Player player2){
         this.player1 = player1;
         this.player2 = player2;
-        this.currentPlayer = startingPlayer;
+
+        if (this.player1.getColor() == Color.RED){
+            this.currentPlayer = this.player2;
+        }else {
+            this.currentPlayer = this.player2;
+        }
     }
 
     public boolean putCoin(int slotNumber){
@@ -58,5 +63,35 @@ public class Game {
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public void printSpielfeld(){
+
+        StringBuilder text = new StringBuilder("| ||0||1||2||3||4||5||6|\r\n");
+        for (int i = 0; i < Game.PLAYINGFIELD_Y; i++ ){
+            text.append("|").append(i).append("|");
+            for (int j = 0; j< Game.PLAYINGFIELD_X; j++){
+                text.append("|");
+                if (this.playingfield[j][i] == Color.RED){
+                    text.append("X");
+                }else if (this.playingfield[j][i] == Color.YELLOW){
+                    text.append("O");
+                }else{
+                    text.append("_");
+                }
+                text.append("|");
+            }
+            text.append("\r\n");
+        }
+
+        System.out.println(text.toString());
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
     }
 }

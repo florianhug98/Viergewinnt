@@ -17,7 +17,7 @@ public class GameTest {
         this.player1 = new Player(Color.RED, "Florian");
         this.player2 = new Player(Color.YELLOW, "Jan");
 
-        this.game = new Game(this.player1, this.player2, this.player1);
+        this.game = new Game(this.player2, this.player1);
     }
 
     @Test
