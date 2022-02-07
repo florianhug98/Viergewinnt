@@ -193,7 +193,7 @@ public class WinChecker {
         int count = 0;
         Color countColor = null;
 
-        for (int rowStart = 0; rowStart < Game.PLAYINGFIELD_Y - Game.WIN_NUMBER; rowStart++){
+        for (int rowStart = 0; rowStart <= Game.PLAYINGFIELD_Y - Game.WIN_NUMBER; rowStart++){
             int row, col;
             for (row = rowStart, col = 0; row < Game.PLAYINGFIELD_Y && col < Game.PLAYINGFIELD_X; row++, col++){
                 if (playingField[col][row] == null){

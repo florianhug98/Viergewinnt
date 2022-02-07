@@ -282,6 +282,28 @@ public class WinCheckerTest {
         Assert.assertTrue(WinChecker.checkWin(this.playingfield, 3,3));
     }
 
+    @Test
+    public void testCheckDiagonal2Win2(){
+        this.playingfield[0][5] = Color.RED;
+        this.playingfield[0][4] = Color.YELLOW;
+        this.playingfield[0][3] = Color.RED;
+        this.playingfield[0][2] = Color.RED;
+
+        this.playingfield[1][5] = Color.RED;
+        this.playingfield[1][4] = Color.YELLOW;
+        this.playingfield[1][3] = Color.RED;
+
+        this.playingfield[2][5] = Color.YELLOW;
+        this.playingfield[2][4] = Color.RED;
+
+        this.playingfield[3][5] = Color.RED;
+
+        System.out.println("dia2 no win 1");
+        printplayingfield();
+
+        Assert.assertTrue(WinChecker.checkWin(this.playingfield, 3,3));
+    }
+
 
     @Test
     public void test(){

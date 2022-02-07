@@ -1,10 +1,13 @@
+import ui.ConsoleUi;
 import ui.graphicalUi.GraphicalStartingUI;
+
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args){
 
-        /* Spiel in der Kosole
+        /*piel in der Kosole
         //-----------------------------
         Scanner sc = new Scanner(System.in);
 

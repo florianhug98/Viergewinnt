@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 public class GraphicalGameUi extends JFrame implements ActionListener {
 
     private Game game;
+    private CoinLabel[][] coinLabelArray = new CoinLabel[Game.PLAYINGFIELD_X][Game.PLAYINGFIELD_Y];
+    private JLabel playerNameLabel;
 
     public GraphicalGameUi(String playerName1, String playerName2){
 
@@ -23,12 +25,12 @@ public class GraphicalGameUi extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setLayout(new BorderLayout());
 
-        JLabel currentPlayerLabel = new JLabel(this.game.getCurrentPlayer().getName());
+        this.playerNameLabel = new JLabel(this.game.getCurrentPlayer().getName());
 
-        this.add(currentPlayerLabel, BorderLayout.NORTH);
+        this.add(this.playerNameLabel, BorderLayout.NORTH);
 
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new GridLayout(8,7));
+        centerPanel.setLayout(new GridLayout(Game.PLAYINGFIELD_Y + 1,Game.PLAYINGFIELD_X));
         centerPanel.setBackground(java.awt.Color.GREEN);
 
         JButton button1 = new JButton("1");
@@ -53,15 +55,49 @@ public class GraphicalGameUi extends JFrame implements ActionListener {
         button7.addActionListener(this);
         centerPanel.add(button7);
 
+        for (int row = 0; row < Game.PLAYINGFIELD_Y; row++){
+            for (int col = 0; col < Game.PLAYINGFIELD_X; col++){
+                CoinLabel coinLabel = new CoinLabel();
+                centerPanel.add(coinLabel);
+                this.coinLabelArray[col][row] = coinLabel;
+            }
+        }
         this.add(centerPanel, BorderLayout.CENTER);
-
-
-
         this.setVisible(true);
     }
 
+    private void paintPlayingfield(){
+        for (int row = 0; row < Game.PLAYINGFIELD_Y; row++){
+            for (int col = 0; col < Game.PLAYINGFIELD_X; col++){
+                this.coinLabelArray[col][row].setColor(this.game.getPlayingfield()[col][row]);
+            }
+        }
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
+            JButton button = (JButton) e.getSource();
+            int slotNumber = Integer.parseInt(button.getText()) - 1;
 
+            boolean gameOver = false;
+
+            try{
+                gameOver = this.game.putCoin(slotNumber);
+                this.playerNameLabel.setText(this.game.getCurrentPlayer().getName());
+            }catch (IllegalArgumentException ex){
+                System.out.println(ex.getMessage());
+            }
+
+            paintPlayingfield();
+
+            if (gameOver){
+                if (this.game.getCurrentPlayer() == this.game.getPlayer1()){
+                    JOptionPane.showMessageDialog(this,this.game.getPlayer2().getName() + " hat gewonnen");
+                }else {
+                    JOptionPane.showMessageDialog(this,this.game.getPlayer1().getName() + " hat gewonnen");
+                }
+                System.exit(0);
+            }
     }
 }
